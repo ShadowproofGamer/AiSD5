@@ -19,7 +19,7 @@ public class Main {
     }
     private static void bst_test(){
         BST bst = new BST();
-
+/*
         bst.insert(20);
         bst.insert(7);
         bst.insert(10);
@@ -32,14 +32,9 @@ public class Main {
         bst.delete(12);
         bst.delete(1);
         bst.delete(20);
+*/
+        bst.load();
 
-        //bst.insert(7);
-        //bst.insert(5);
-        //bst.insert(3);
-        //bst.insert(10);
-        //bst.insert(8);
-        //bst.insert(12);
-        //print the BST
         System.out.println("inorder:");
         bst.inorder();
         System.out.println("\npreorder:");
@@ -51,11 +46,10 @@ public class Main {
         System.out.println("\nminimum: "+minval);
         int maxval = bst.findMax();
         System.out.println("maximum: "+maxval);
-        //search a key in the BST
-        boolean ret_val = bst.search (50);
-        System.out.println("\nKey 50 found in BST:" + ret_val );
-        ret_val = bst.search (30);
-        System.out.println("\nKey 30 found in BST:" + ret_val );
+        //boolean ret_val = bst.search (50);
+        //System.out.println("\nKey 50 found in BST:" + ret_val );
+        //ret_val = bst.search (30);
+        //System.out.println("\nKey 30 found in BST:" + ret_val );
         int xvc = bst.count();
         System.out.println("\nNodes number in BST: "+xvc);
         int h = bst.heightCount();
@@ -67,6 +61,19 @@ public class Main {
         int bro = bst.countOneBro();
         System.out.println("\nOne bro nodes number in BST: "+bro);
         int och = bst.countOneChildHeight();
-        System.out.println("\nOne child height number in BST: "+och);
+        System.out.println("\nOne child height node number in BST: "+och);
+
+        bst.save();
+        System.out.println("\nBST saved.");
+        bst.load();
+        System.out.println("BST loaded.");
+
+        System.out.println("\ninorder:");
+        bst.inorder();
+        System.out.println("\n\npreorder:");
+        bst.preorder();
+        System.out.println("\n\npostorder:");
+        bst.postorder();
+
     }
 }

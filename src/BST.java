@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.ArrayList;
+
 public class BST {
     // BST root node
     private Node root;
@@ -217,8 +220,7 @@ public class BST {
             } else if (root.left != null && root.right == null) {
                 result++;
                 result += counterOneChildRecursive(root.left, 0);
-            }
-            else {
+            } else {
                 result += counterOneChildRecursive(root.right, 0);
                 result += counterOneChildRecursive(root.left, 0);
             }
@@ -274,14 +276,70 @@ public class BST {
                     index = temp;
                     max = result;
                 }
-                counterOneChildHeightRecursive(root.left, 0, max, index, root.left.key);
-                counterOneChildHeightRecursive(root.right, 0, max, index, root.right.key);
+                index = counterOneChildHeightRecursive(root.left, 0, max, index, root.left.key);
+                index = counterOneChildHeightRecursive(root.right, 0, max, index, root.right.key);
             }
 
         }
         return index;
     }
 
+
+    private void preorderSaveRecursive(Node root, ArrayList<Integer> s) {
+        if (root != null) {
+            s.add(root.key);
+            preorderSaveRecursive(root.left, s);
+            preorderSaveRecursive(root.right, s);
+        }
+    }
+
+    public void save() {
+        try (
+                BufferedWriter bw = new BufferedWriter(new FileWriter("src/bst.txt"));
+        ) {
+            ArrayList<Integer> arr = new ArrayList<>();
+            preorderSaveRecursive(root, arr);
+            for (int i = 0; i < arr.size(); i++) {
+                bw.write(arr.get(i) + "\n");
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("brak pliku");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("IOException");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error");
+        }
+    }
+
+    public void load() {
+        try (
+                BufferedReader br = new BufferedReader(new FileReader("src/bst.txt"));
+        ) {
+            ArrayList<Integer> arr = new ArrayList<>();
+            String t = ".";
+            while ((t = br.readLine()) != null && t.length() > 0) {
+                arr.add(Integer.parseInt(t));
+            }
+            root = null;
+            for (int a : arr) {
+                insert(a);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("brak pliku");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("IOException");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error");
+        }
+    }
 
     public boolean search(int key) {
         Node r = searchRecursive(root, key);
@@ -299,7 +357,6 @@ public class BST {
         // val is less than root's key
         return searchRecursive(root.right, key);
     }
-
 
     //node class that defines BST node
     private class Node {

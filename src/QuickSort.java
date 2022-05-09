@@ -28,21 +28,20 @@ public class QuickSort<T> {
         //bierzemy losowy element dzielący (dla kolekcji > 100 średnia z 3 losowych elementów)
 
         int rnd = nFrom + random.nextInt(nTo - nFrom);
-        if (nTo - nFrom>100){
+        if (nTo - nFrom > 100) {
             int rnd1 = nFrom + random.nextInt(nTo - nFrom);
             int rnd2 = nFrom + random.nextInt(nTo - nFrom);
             int rnd3 = nFrom + random.nextInt(nTo - nFrom);
-            rnd = (rnd1+rnd2+rnd3)/3;
+            rnd = (rnd1 + rnd2 + rnd3) / 3;
         }
 
         swap(list, nFrom, rnd);
         T value = list.get(nFrom);
         int idxBigger = nFrom + 1, idxLower = nTo - 1;
         do {
-            while (idxBigger <= idxLower && _comparator.compare(list.get(idxBigger), value) <= 0)
-                idxBigger++;
+            while (idxBigger <= idxLower && _comparator.compare(list.get(idxBigger), value) <= 0) idxBigger++;
             while (_comparator.compare(list.get(idxLower), value) > 0) idxLower--;
-            if (idxBigger < idxLower)   swap(list, idxBigger, idxLower);
+            if (idxBigger < idxLower) swap(list, idxBigger, idxLower);
         } while (idxBigger < idxLower);
         swap(list, idxLower, nFrom);
         return idxLower;
