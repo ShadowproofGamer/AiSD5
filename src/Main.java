@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-
-        bst_test();
+        //zad2();
+        zad4();
+        //bst_test();
     }
     private static void zad2(){
         //zad2
@@ -74,6 +76,24 @@ public class Main {
         bst.preorder();
         System.out.println("\n\npostorder:");
         bst.postorder();
+
+
+
+    }
+    private static void zad4(){
+        Hashtable<Integer, Student> ht = new Hashtable();
+        Student s1 = new Student(20, "Jan", "Brzechwa", "Wroclaw University of Technology");
+        Student s2 = new Student(20, "Marcin", "Jarzębina", "Wroclaw University of Technology");
+        Student s3 = new Student(21, "Andrzej", "Dąb", "Krakow University of Technology");
+        Student s4 = new Student(23, "Karol", "Popiół", "Wroclaw Medical School");
+        Student s5 = new Student(20, "Jan", "Kamiński", "Wroclaw University of Technology");
+        ht.put(1, s1);
+        ht.put(2, s2);
+        ht.put(3, s3);
+        ht.put(4, s4);
+        ht.put(5, s5);
+        System.out.println(ht.get(1));
+
 
     }
 }

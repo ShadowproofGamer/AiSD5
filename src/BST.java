@@ -2,22 +2,18 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class BST {
-    // BST root node
     private Node root;
     private int height;
 
-    // Constructor for BST =>initial empty tree
     public BST() {
         root = null;
         height = -1;
     }
 
-    //delete a node from BST
     public void delete(int key) {
         root = deleteRecursive(root, key);
     }
 
-    //recursive delete function
     private Node deleteRecursive(Node root, int key) {
         //tree is empty
         if (root == null) return root;
@@ -49,9 +45,7 @@ public class BST {
     }
 
     public int minValue(Node root) {
-        //initially minval = root
         int minval = root.key;
-        //find minval
         while (root.left != null) {
             minval = root.left.key;
             root = root.left;
@@ -64,9 +58,7 @@ public class BST {
     }
 
     public int maxValue(Node root) {
-        //initially minval = root
         int minval = root.key;
-        //find maxval
         while (root.right != null) {
             minval = root.right.key;
             root = root.right;
@@ -88,50 +80,34 @@ public class BST {
         return root;
     }
 
-    // insert a node in BST
     public void insert(int key) {
         root = insertRecursive(root, key);
     }
 
-    //recursive insert function
     private Node insertRecursive(Node root, int key) {
-        //tree is empty
         if (root == null) {
             root = new Node(key);
-            //root.p=null;
             return root;
         }
-        //traverse the tree
-        else if (key < root.key)     //insert in the left subtree
-            root.left = insertRecursive(root.left, key);
-        else if (key > root.key)    //insert in the right subtree
-            root.right = insertRecursive(root.right, key);
-        // return pointer
+        else if (key < root.key) root.left = insertRecursive(root.left, key);
+        else if (key > root.key) root.right = insertRecursive(root.right, key);
         return root;
     }
 
     private Node insertRecursive(Node root, int key, Node parent) {
-        //tree is empty
         if (root == null) {
             root = new Node(key, parent);
-            //root.p=null;
             return root;
         }
-        //traverse the tree
-        else if (key < root.key)     //insert in the left subtree
-            root.left = insertRecursive(root.left, key, root);
-        else if (key > root.key)    //insert in the right subtree
-            root.right = insertRecursive(root.right, key, root);
-        // return pointer
+        else if (key < root.key) root.left = insertRecursive(root.left, key, root);
+        else if (key > root.key) root.right = insertRecursive(root.right, key, root);
         return root;
     }
 
-    // method for inorder traversal of BST
     public void inorder() {
         inorderRecursive(root);
     }
 
-    // recursively traverse the BST
     private void inorderRecursive(Node root) {
         if (root != null) {
             inorderRecursive(root.left);
@@ -320,7 +296,7 @@ public class BST {
                 BufferedReader br = new BufferedReader(new FileReader("src/bst.txt"));
         ) {
             ArrayList<Integer> arr = new ArrayList<>();
-            String t = ".";
+            String t;
             while ((t = br.readLine()) != null && t.length() > 0) {
                 arr.add(Integer.parseInt(t));
             }
@@ -346,19 +322,15 @@ public class BST {
         return r != null;
     }
 
-    //recursive insert function
-    public Node searchRecursive(Node root, int key) {
-        // Base Cases: root is null or key is present at root
+    private Node searchRecursive(Node root, int key) {
         if (root == null || root.key == key)
             return root;
-        // val is greater than root's key
-        if (root.key > key)
+        else if (root.key > key)
             return searchRecursive(root.left, key);
-        // val is less than root's key
-        return searchRecursive(root.right, key);
+        else
+            return searchRecursive(root.right, key);
     }
 
-    //node class that defines BST node
     private class Node {
         public Node p;
         public int key;
