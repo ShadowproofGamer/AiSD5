@@ -279,12 +279,6 @@ public class BST {
                 bw.write(arr.get(i) + "\n");
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("brak pliku");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("IOException");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error");
@@ -305,12 +299,6 @@ public class BST {
                 insert(a);
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("brak pliku");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("IOException");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error");

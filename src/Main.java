@@ -5,8 +5,9 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         //zad2();
-        zad4();
+        //zad4();
         //bst_test();
+
     }
     private static void zad2(){
         //zad2
